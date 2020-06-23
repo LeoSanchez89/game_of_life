@@ -1,0 +1,14 @@
+.App {
+	margin: 4%;
+}
+.grid-container {
+	display: flex;
+	/* justify-content: center; */
+	align-items: center;
+	flex-direction: column;
+}
+div h1 {
+	text-align: center;
+	font-size: 3rem;
+	margin-bottom: 3%;
+}
