@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Grid } from "./grid/Grid";
-import { Button } from "reactstrap";
+
 
 function App() {
 	return (

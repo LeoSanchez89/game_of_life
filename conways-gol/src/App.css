@@ -3,32 +3,36 @@
 }
 .grid-container {
 	display: flex;
-	/* justify-content: center; */
 	align-items: center;
 	flex-direction: column;
 	text-align: center;
 }
 div h1 {
 	text-align: center;
-	font-size: 3rem;
+	font-size: 3.5rem;
 	margin-bottom: 3%;
+}
+div p{
+	font-size: 1.1rem;
+	
 }
 .grid-box {
 	display: grid;
 	grid-template-columns: repeat(50, 15px);
 	border: 5px solid grey;
+	margin-top:.8%;
 }
-.active-cells {
+.cells {
 	width: 15px;
 	height: 15px;
-	background-color: red;
-	border: 1px solid black;
 	border-radius: 50%;
 }
-.dead-cells{
-	width: 15px;
-	height: 15px;
-	background-color: none;
-	border: 1px solid none;
-	border-radius: 50%;
+.drop-down{
+	display:flex;
+	margin-bottom: 1.5%;
+	flex-direction: row-reverse;
+}
+.button{
+	width: 60px;
+	border-radius: 10%;
 }
