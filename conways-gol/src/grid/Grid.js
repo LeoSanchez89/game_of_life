@@ -146,9 +146,9 @@ export function Grid() {
 						let neighbors = 0;
 						check.forEach(([x, y]) => {
 							const newI = i + x;
-							const newK = j + y;
-							if (newI >= 0 && newI < rows && newK >= 0 && newK < columns) {
-								neighbors += original[newI][newK];
+							const newJ = j + y;
+							if (newI >= 0 && newI < rows && newJ >= 0 && newJ < columns) {
+								neighbors += original[newI][newJ];
 							}
 						});
 						if (neighbors < 2 || neighbors > 3) {
@@ -172,7 +172,7 @@ export function Grid() {
 		<section className="grid-container">
 			<div className="drop-down">
 				<ButtonDropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
-					<DropdownToggle caret color="primary">
+					<DropdownToggle caret color="primary" id="preset">
 						Presets
 					</DropdownToggle>
 					<DropdownMenu>
@@ -206,7 +206,7 @@ export function Grid() {
 				>
 					<DropdownToggle
 						caret
-						style={{ color: `${color}`, backgroundColor: "#383838" }}
+						style={{ color: `${color}`}}
 					>
 						Color Picker
 					</DropdownToggle>
@@ -242,7 +242,7 @@ export function Grid() {
 					</DropdownMenu>
 				</ButtonDropdown>
 			</div>
-			<div>
+			<div className="controls">
 				<p>Generation = {count}</p>
 				<button
 					className="button"
@@ -269,31 +269,30 @@ export function Grid() {
 					Clear
 				</button>
 			</div>
-			<div className="grid-box">
-				{grid.map((rows, i) =>
-					rows.map((col, j) => (
-						<div
-							className="cells"
-							style={{
-								backgroundColor: grid[i][j] ? `${color}` : undefined,
-								border: grid[i][j] ? "1px solid black" : undefined
-							}}
-							key={`${i}, ${j}`}
-							onClick={() => {
-								if (running) {
-									return;
-								} else {
-									const newGrid = produce(grid, (gridCopy) => {
-										gridCopy[i][j] = grid[i][j] ? 0 : 1;
-									});
-									setGrid(newGrid);
-									console.log(grid);
-								}
-							}}
-						/>
-					))
-				)}
-			</div>
+				<div className="grid-box">
+					{grid.map((rows, i) =>
+						rows.map((col, j) => (
+							<div
+								className="cells"
+								style={{
+									backgroundColor: grid[i][j] ? `${color}` : undefined,
+									border: grid[i][j] ? ".1vw solid black" : undefined,
+								}}
+								key={`${i}, ${j}`}
+								onClick={() => {
+									if (running) {
+										return;
+									} else {
+										const newGrid = produce(grid, (gridCopy) => {
+											gridCopy[i][j] = grid[i][j] ? 0 : 1;
+										});
+										setGrid(newGrid);
+									}
+								}}
+							/>
+						))
+					)}
+				</div>
 		</section>
 	);
 }
