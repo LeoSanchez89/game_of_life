@@ -1,6 +1,9 @@
 # Cellular Automata and Conway's "Game of Life"
 Recreating John Conway's iconic 1970's Game of Life using React. Turing complete game that relies on cellular automata to function. It follows a simple set of rules to decide which cells live on or die in the next generation!
 
+![Gosper's Glider Gun](https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif)
+![Pulsar](https://upload.wikimedia.org/wikipedia/commons/0/07/Game_of_life_pulsar.gif)
+
 The Rules:
 <ul>
   <li>Any live cell with two or three live neighbours survives</li>
@@ -19,4 +22,4 @@ Features:
   <li>All edge cells along the perimeter are permanently dead</li>
 </ul>
 
-![Gosper's Glider Gun](https://upload.wikimedia.org/wikipedia/commons/e/e5/Gospers_glider_gun.gif)
+
