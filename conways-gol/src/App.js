@@ -6,6 +6,7 @@ function App() {
 	return (
 		<div className="App">
 			<h1>Conway's Game of Life</h1>
+			<Grid />
 			<section class="main-text">
 				<div className="rules-container">
 					<h2>The Rules</h2>
@@ -28,7 +29,6 @@ function App() {
 					</p>
 				</div>
 			</section>
-			<Grid />
 		</div>
 	);
 }
