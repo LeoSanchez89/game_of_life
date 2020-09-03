@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import produce from "immer";
+import arcade from "../img/arcade_cabinet2.png";
 import {
 	ButtonDropdown,
 	DropdownToggle,
@@ -33,7 +34,7 @@ export function Grid() {
 	const runningRef = useRef(running);
 	runningRef.current = running;
 	let [count, setCount] = useState(0);
-	const [color, setColor] = useState("red");
+	const [color, setColor] = useState("rgb(0, 104, 0)");
 
 	// PRESETS
 	const randomizeGrid = () => {
@@ -170,13 +171,14 @@ export function Grid() {
 
 	return (
 		<section className="grid-container">
-			<div className="drop-down">
+			{/* <div className="drop-down">
 				<ButtonDropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
-					<DropdownToggle caret color="primary" id="preset">
+					<DropdownToggle caret style={{ color: "rgb(167, 204, 0)" }}>
 						Presets
 					</DropdownToggle>
 					<DropdownMenu>
 						<DropdownItem
+							className="preset_item"
 							onClick={() => {
 								rorschach();
 							}}
@@ -184,6 +186,7 @@ export function Grid() {
 							Rorschach
 						</DropdownItem>
 						<DropdownItem
+							className="preset_item"
 							onClick={() => {
 								collision();
 							}}
@@ -191,6 +194,7 @@ export function Grid() {
 							Collision
 						</DropdownItem>
 						<DropdownItem
+							className="preset_item"
 							onClick={() => {
 								randomizeGrid();
 							}}
@@ -206,12 +210,18 @@ export function Grid() {
 				>
 					<DropdownToggle
 						caret
-						style={{ color: `${color}`}}
+						style={{
+							color:
+								`${color}` === "rgb(0, 104, 0)"
+									? "rgb(167, 204, 0)"
+									: `${color}`,
+						}}
 					>
 						Color Picker
 					</DropdownToggle>
 					<DropdownMenu>
 						<DropdownItem
+							style={{ color: "red" }}
 							onClick={() => {
 								setColor("red");
 							}}
@@ -219,31 +229,61 @@ export function Grid() {
 							Red
 						</DropdownItem>
 						<DropdownItem
+							style={{ color: "royalblue" }}
 							onClick={() => {
-								setColor("lightskyblue");
+								setColor("royalblue");
 							}}
 						>
 							Blue
 						</DropdownItem>
 						<DropdownItem
+							style={{ color: "rgb(167, 204, 0)" }}
 							onClick={() => {
-								setColor("lightgreen");
+								setColor("rgb(0, 104, 0)");
 							}}
 						>
-							Green
+							Retro
 						</DropdownItem>
 						<DropdownItem
+							style={{ color: "darkorchid" }}
 							onClick={() => {
-								setColor("pink");
+								setColor("darkorchid");
 							}}
 						>
-							Pink
+							Purple
 						</DropdownItem>
 					</DropdownMenu>
 				</ButtonDropdown>
+			</div> */}
+			<div className="grid-wrapper">
+				<img id="arcade" src={arcade} />
+				<div className="grid-box">
+					{grid.map((rows, i) =>
+						rows.map((col, j) => (
+							<div
+								className="cells"
+								style={{
+									backgroundColor: grid[i][j] ? `${color}` : "rgb(147, 180, 1)",
+									// border: grid[i][j] ? ".1vw solid rgb(0, 104, 0)" : undefined,
+								}}
+								key={`${i}, ${j}`}
+								onClick={() => {
+									if (running) {
+										return;
+									} else {
+										const newGrid = produce(grid, (gridCopy) => {
+											gridCopy[i][j] = grid[i][j] ? 0 : 1;
+										});
+										setGrid(newGrid);
+									}
+								}}
+							/>
+						))
+					)}
+				</div>
 			</div>
+			<p className="gen-count">Generation = {count}</p>
 			<div className="controls">
-				<p>Generation = {count}</p>
 				<button
 					className="button"
 					onClick={() => {
@@ -269,30 +309,97 @@ export function Grid() {
 					Clear
 				</button>
 			</div>
-				<div className="grid-box">
-					{grid.map((rows, i) =>
-						rows.map((col, j) => (
-							<div
-								className="cells"
-								style={{
-									backgroundColor: grid[i][j] ? `${color}` : undefined,
-									border: grid[i][j] ? ".1vw solid black" : undefined,
-								}}
-								key={`${i}, ${j}`}
-								onClick={() => {
-									if (running) {
-										return;
-									} else {
-										const newGrid = produce(grid, (gridCopy) => {
-											gridCopy[i][j] = grid[i][j] ? 0 : 1;
-										});
-										setGrid(newGrid);
-									}
-								}}
-							/>
-						))
-					)}
-				</div>
+			<div className="drop-down">
+				<ButtonDropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
+					<DropdownToggle
+						caret
+						size="sm"
+						caret
+						style={{ color: "rgb(167, 204, 0)" }}
+					>
+						Presets
+					</DropdownToggle>
+					<DropdownMenu>
+						<DropdownItem
+							className="preset_item"
+							onClick={() => {
+								rorschach();
+							}}
+						>
+							Rorschach
+						</DropdownItem>
+						<DropdownItem
+							className="preset_item"
+							onClick={() => {
+								collision();
+							}}
+						>
+							Collision
+						</DropdownItem>
+						<DropdownItem
+							className="preset_item"
+							onClick={() => {
+								randomizeGrid();
+							}}
+						>
+							Random
+						</DropdownItem>
+					</DropdownMenu>
+				</ButtonDropdown>
+				<ButtonDropdown
+					direction="left"
+					isOpen={dropdownOpenColor}
+					toggle={toggleColor}
+				>
+					<DropdownToggle
+						caret
+						size="sm"
+						caret
+						style={{
+							color:
+								`${color}` === "rgb(0, 104, 0)"
+									? "rgb(167, 204, 0)"
+									: `${color}`,
+						}}
+					>
+						Color Picker
+					</DropdownToggle>
+					<DropdownMenu>
+						<DropdownItem
+							style={{ color: "red" }}
+							onClick={() => {
+								setColor("red");
+							}}
+						>
+							Red
+						</DropdownItem>
+						<DropdownItem
+							style={{ color: "royalblue" }}
+							onClick={() => {
+								setColor("royalblue");
+							}}
+						>
+							Blue
+						</DropdownItem>
+						<DropdownItem
+							style={{ color: "rgb(167, 204, 0)" }}
+							onClick={() => {
+								setColor("rgb(0, 104, 0)");
+							}}
+						>
+							Retro
+						</DropdownItem>
+						<DropdownItem
+							style={{ color: "darkorchid" }}
+							onClick={() => {
+								setColor("darkorchid");
+							}}
+						>
+							Purple
+						</DropdownItem>
+					</DropdownMenu>
+				</ButtonDropdown>
+			</div>
 		</section>
 	);
 }
