@@ -171,90 +171,6 @@ export function Grid() {
 
 	return (
 		<section className="grid-container">
-			{/* <div className="drop-down">
-				<ButtonDropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
-					<DropdownToggle caret style={{ color: "rgb(167, 204, 0)" }}>
-						Presets
-					</DropdownToggle>
-					<DropdownMenu>
-						<DropdownItem
-							className="preset_item"
-							onClick={() => {
-								rorschach();
-							}}
-						>
-							Rorschach
-						</DropdownItem>
-						<DropdownItem
-							className="preset_item"
-							onClick={() => {
-								collision();
-							}}
-						>
-							Collision
-						</DropdownItem>
-						<DropdownItem
-							className="preset_item"
-							onClick={() => {
-								randomizeGrid();
-							}}
-						>
-							Random
-						</DropdownItem>
-					</DropdownMenu>
-				</ButtonDropdown>
-				<ButtonDropdown
-					direction="left"
-					isOpen={dropdownOpenColor}
-					toggle={toggleColor}
-				>
-					<DropdownToggle
-						caret
-						style={{
-							color:
-								`${color}` === "rgb(0, 104, 0)"
-									? "rgb(167, 204, 0)"
-									: `${color}`,
-						}}
-					>
-						Color Picker
-					</DropdownToggle>
-					<DropdownMenu>
-						<DropdownItem
-							style={{ color: "red" }}
-							onClick={() => {
-								setColor("red");
-							}}
-						>
-							Red
-						</DropdownItem>
-						<DropdownItem
-							style={{ color: "royalblue" }}
-							onClick={() => {
-								setColor("royalblue");
-							}}
-						>
-							Blue
-						</DropdownItem>
-						<DropdownItem
-							style={{ color: "rgb(167, 204, 0)" }}
-							onClick={() => {
-								setColor("rgb(0, 104, 0)");
-							}}
-						>
-							Retro
-						</DropdownItem>
-						<DropdownItem
-							style={{ color: "darkorchid" }}
-							onClick={() => {
-								setColor("darkorchid");
-							}}
-						>
-							Purple
-						</DropdownItem>
-					</DropdownMenu>
-				</ButtonDropdown>
-			</div> */}
 			<div className="grid-wrapper">
 				<img id="arcade" src={arcade} />
 				<div className="grid-box">
@@ -310,7 +226,7 @@ export function Grid() {
 				</button>
 			</div>
 			<div className="drop-down">
-				<ButtonDropdown direction="right" isOpen={dropdownOpen} toggle={toggle}>
+				<ButtonDropdown id="presets" direction="right" isOpen={dropdownOpen} toggle={toggle}>
 					<DropdownToggle
 						caret
 						size="sm"
@@ -346,7 +262,8 @@ export function Grid() {
 						</DropdownItem>
 					</DropdownMenu>
 				</ButtonDropdown>
-				<ButtonDropdown
+			<ButtonDropdown
+					id="color_picker"
 					direction="left"
 					isOpen={dropdownOpenColor}
 					toggle={toggleColor}
@@ -362,7 +279,7 @@ export function Grid() {
 									: `${color}`,
 						}}
 					>
-						Color Picker
+						Colors
 					</DropdownToggle>
 					<DropdownMenu>
 						<DropdownItem
