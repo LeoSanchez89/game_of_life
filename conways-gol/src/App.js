@@ -11,9 +11,9 @@ function App() {
 				<div className="rules-container">
 					<h2>The Rules</h2>
 					<ul>
-						<li>Any live cell with two or three live neighbours survives</li>
+						<li>Any live cell with 2 or 3 live neighbors survives</li>
 						<li>
-							Any dead cell with three live neighbours becomes a live cell
+							Dead cells with 3 live neighbors becomes a live cell
 						</li>
 						<li>All other live cells die in the next generation</li>
 					</ul>
